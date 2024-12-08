@@ -1,14 +1,20 @@
+import java.nio.file.FileAlreadyExistsException;
+
 /**
  * A library of string functions.
  */
 public class MyString {
     public static void main(String args[]) {
         String hello = "hello";
+        String comittee = "comittee";
+        String meet = "meet";
         System.out.println(countChar(hello, 'h'));
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
+        
         //// Put your other tests here.
+        System.out.println(" the word is " + remove(comittee,meet));
     }
 
     /**
@@ -20,8 +26,15 @@ public class MyString {
      * @return the number of times c appears in str
      */
     public static int countChar(String str, char ch) {
-        //// Replace the following statement with your code
-        return 0;
+        int count = 0;
+
+        for(int i = 0; i < str.length(); i++){
+            if (str.charAt(i) == ch) {
+                count++;   
+            }
+        }
+        return count;
+
     }
 
     /** Returns true if str1 is a subset string str2, false otherwise
@@ -36,8 +49,19 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
-         //// Replace the following statement with your code
-        return false;
+         if (str1.length() > str2.length()){
+            return false;
+         }
+
+         for ( int i = 0; i < str1.length(); i++){
+            
+            if (countChar(str1, str1.charAt(i)) > countChar(str2, str1.charAt(i))){
+                return false;        
+            }
+
+         }
+        return true;
+        
     }
 
     /** Returns a string which is the same as the given string, with a space
@@ -49,8 +73,15 @@ public class MyString {
      * @return a string consisting of the characters of str, separated by spaces.
      */
     public static String spacedString(String str) {
-        //// Replace the following statement with your code
-        return null;
+        String spacedString = "";
+        for (int i = 0; i < (str.length() -1); i++){
+            spacedString += (str.charAt(i) + " ");
+        }
+        if (str.length() != 0) {
+            spacedString += str.charAt(str.length()-1);  
+        }
+        
+        return spacedString;
     }
   
     /**
@@ -64,8 +95,12 @@ public class MyString {
      * @return a randomly generated string, consisting of 'n' lowercase letters
      */
     public static String randomStringOfLetters(int n) {
-        //// Replace the following statement with your code
-        return null;
+        String randomStringOfLetters = "";
+        for (int i = 0; i < n; i++){
+            randomStringOfLetters += (char)((int)(Math.random() * 26) + 'a');
+        }
+
+        return randomStringOfLetters;
     }
 
     /**
@@ -78,9 +113,39 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-       //// Replace the following statement with your code
-        return null;
+        //String removeFromStr2 = "";
+        
+
+        //for (int i = 0; i < str2.length(); i ++){
+            //boolean isDeleted = false;
+            //for (int j = 0; j < str1.length(); j++){
+                //if (str1.charAt(j) != str2.charAt(i) || isDeleted ) {
+                    //removeFromStr2 += str1.charAt(j);
+                    
+                    
+                //}else{
+                    //isDeleted =true;
+                //}
+                
+            //}
+        //}
+        String removeFromStr2 = "";
+        String tempStr2 = str2;
+        for(int i = 0; i < str1.length(); i++){
+            
+         int indexToRemove = tempStr2.indexOf(str1.charAt(i));
+         if (indexToRemove != -1) {  
+         tempStr2 = tempStr2.substring(0, indexToRemove) + tempStr2.substring(indexToRemove + 1);
+        }else{
+            removeFromStr2 += str1.charAt(i);
+         
+        }
     }
+        return removeFromStr2;
+    
+
+    }
+
 
     /**
      * Returns a string consisting of the given string, with the given 
