@@ -124,11 +124,10 @@ public class Scrabble {
 				break;	
 
 			}if (MyString.subsetOf(input, hand) && isWordInDictionary(input)){
-					System.out.println(input);
 					hand = MyString.remove(hand, input);
 					int wordScore = wordScore(input);
 					score += wordScore;
-					System.out.println(input + " earned " + wordScore + " points. Total: " + score + " points.\n");
+					System.out.println(input + " earned " + wordScore + " points. Total: " + score + " points\n");
 
 				
 			}else{
