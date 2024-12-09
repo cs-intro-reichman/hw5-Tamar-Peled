@@ -120,7 +120,7 @@ public class Scrabble {
 			//String input = in.readString();
 			String input = scanner.next();
 
-			if (input.equals('.')) {
+			if (input.equals(".")) {
 				break;	
 
 			}if (MyString.subsetOf(input, hand) && isWordInDictionary(input)){
@@ -128,7 +128,7 @@ public class Scrabble {
 					hand = MyString.remove(hand, input);
 					int wordScore = wordScore(input);
 					score += wordScore;
-					System.out.println(input + " earned " + wordScore + " points. Total: " + score + " points\n");
+					System.out.println(input + " earned " + wordScore + " points. Total: " + score + " points.\n");
 
 				
 			}else{
