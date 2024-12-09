@@ -1,6 +1,9 @@
 /*
  * RUNI version of the Scrabble game.
  */
+
+import java.util.Scanner;
+
 public class Scrabble {
 
 	// Note 1: "Class variables", like the five class-level variables declared below,
@@ -48,7 +51,12 @@ public class Scrabble {
 
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
-		//// Replace the following statement with your code
+		for (int i = 0; i < DICTIONARY.length; i++){
+			if (word.equals(DICTIONARY[i])) {
+				return true;
+			}
+		}
+		
 		return false;
 	}
 	
@@ -56,16 +64,36 @@ public class Scrabble {
 	// If the length of the word equals the length of the hand, adds 50 points to the score.
 	// If the word includes the sequence "runi", adds 1000 points to the game.
 	public static int wordScore(String word) {
-		//// Replace the following statement with your code
-		return 0;
+		int sum = 0;
+		
+		for (int i = 0; i< word.length(); i++){
+			char ch = word.charAt(i);
+			int numberOfTheLetter = ch - 'a';
+			//System.out.println("number of the letter " +numberOfTheLetter);
+
+			sum += (SCRABBLE_LETTER_VALUES[numberOfTheLetter]) * (word.length());
+			//System.out.println("worg lengthhhh " + word.length());
+		}
+			if (word.length() == HAND_SIZE){
+				sum += 50;
+			}
+			if (MyString.subsetOf("runi", word)){
+				sum += 1000;
+			}
+			
+		
+		//System.out.println("print scoreeee " + sum);
+		return sum;
 	}
 
 	// Creates a random hand of length (HAND_SIZE - 2) and then inserts
 	// into it, at random indexes, the letters 'a' and 'e'
 	// (these two vowels make it easier for the user to construct words)
 	public static String createHand() {
-		//// Replace the following statement with your code
-		return null;
+		String hand = MyString.randomStringOfLetters(HAND_SIZE - 2);
+		String ofiicialHand =  MyString.insertRandomly('a', MyString.insertRandomly('e', hand));
+
+		return ofiicialHand;
 	}
 	
     // Runs a single hand in a Scrabble game. Each time the user enters a valid word:
@@ -75,6 +103,7 @@ public class Scrabble {
 	public static void playHand(String hand) {
 		int n = hand.length();
 		int score = 0;
+		Scanner scanner = new Scanner(System.in);
 		// Declares the variable in to refer to an object of type In, and initializes it to represent
 		// the stream of characters coming from the keyboard. Used for reading the user's inputs.   
 		In in = new In();
@@ -84,10 +113,27 @@ public class Scrabble {
 			// Reads the next "token" from the keyboard. A token is defined as a string of 
 			// non-whitespace characters. Whitespace is either space characters, or  
 			// end-of-line characters.
-			String input = in.readString();
-			//// Replace the following break statement with code
-			//// that completes the hand playing loop
-			break;
+			if (!scanner.hasNext()){
+				break;
+			}
+
+			//String input = in.readString();
+			String input = scanner.next();
+
+			if (input.equals(".")) {
+				break;	
+
+			}if (MyString.subsetOf(input, hand) && isWordInDictionary(input)){
+					hand = MyString.remove(hand, input);
+					int wordScore = wordScore(input);
+					score += wordScore;
+					System.out.println(input + " earned " + wordScore + " points. Total: " + score + " points\n");
+
+				
+			}else{
+				System.out.println("Invalid word. Try again.");
+			}
+			
 		}
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + score + " points");
@@ -110,9 +156,18 @@ public class Scrabble {
 			// Gets the user's input, which is all the characters entered by 
 			// the user until the user enter the ENTER character.
 			String input = in.readString();
-			//// Replace the following break statement with code
+
+			if (input.equals("e")) {
+				break;	
+			}if (input.equals("n")) {
+				playHand(createHand());	
+				
+			}
+			System.out.println("error in your input");
+			continue;
+		
 			//// that completes the game playing loop
-			break;
+			//break;
 		}
 	}
 
@@ -151,5 +206,8 @@ public class Scrabble {
 		//playHand("ocostrza");
 		//playHand("arbffip");
 		//playHand("aretiin");
+		//playHand("train");
+		
+		
 	}
 }
