@@ -117,14 +117,15 @@ public class Scrabble {
 				if (isWordInDictionary(input)) {
 					System.out.println(input);
 					hand = MyString.remove(hand, input);
-					score += wordScore(input);
-					System.out.println(input + "earned " + wordScore(input) + " points. Total: " + score + " points.");
+					int wordScore = wordScore(input);
+					score += wordScore;
+					System.out.println(input + "earned " + wordScore + " points. Total: " + score + " points.");
 
 				}	
-			}if (!input.equals('.')){
+			}else{
 				System.out.println("Invalid word. Try again.");
-			break;
 			}
+			
 			
 			
 			
@@ -150,16 +151,18 @@ public class Scrabble {
 			// Gets the user's input, which is all the characters entered by 
 			// the user until the user enter the ENTER character.
 			String input = in.readString();
-			if (input.equals('e')) {
+
+			if (input.equals("e")) {
 				break;	
-			}if (input.equals('n')) {
+			}if (input.equals("n")) {
 				playHand(createHand());	
-				break;
+				
 			}
 			System.out.println("error in your input");
-			playGame();
+			continue;
+		
 			//// that completes the game playing loop
-			break;
+			//break;
 		}
 	}
 
