@@ -1,4 +1,3 @@
-import java.nio.file.FileAlreadyExistsException;
 
 /**
  * A library of string functions.
@@ -6,15 +5,13 @@ import java.nio.file.FileAlreadyExistsException;
 public class MyString {
     public static void main(String args[]) {
         String hello = "hello";
-        String comittee = "comittee";
-        String meet = "meet";
         System.out.println(countChar(hello, 'h'));
         System.out.println(countChar(hello, 'l'));
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
         
         //// Put your other tests here.
-        System.out.println(" the word is " + remove(comittee,meet));
+       
     }
 
     /**

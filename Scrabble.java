@@ -103,7 +103,6 @@ public class Scrabble {
 	public static void playHand(String hand) {
 		int n = hand.length();
 		int score = 0;
-		Scanner scanner = new Scanner(System.in);
 		// Declares the variable in to refer to an object of type In, and initializes it to represent
 		// the stream of characters coming from the keyboard. Used for reading the user's inputs.   
 		In in = new In();
@@ -113,17 +112,13 @@ public class Scrabble {
 			// Reads the next "token" from the keyboard. A token is defined as a string of 
 			// non-whitespace characters. Whitespace is either space characters, or  
 			// end-of-line characters.
-			if (!scanner.hasNext()){
-				break;
-			}
-
-			//String input = in.readString();
-			String input = scanner.next();
-
+			String input = in.readString();
+			
 			if (input.equals(".")) {
 				break;	
 
-			}if (MyString.subsetOf(input, hand) && isWordInDictionary(input)){
+			}if (MyString.subsetOf(input, hand)){
+				if (isWordInDictionary(input)){
 					hand = MyString.remove(hand, input);
 					int wordScore = wordScore(input);
 					score += wordScore;
@@ -131,16 +126,21 @@ public class Scrabble {
 
 				
 			}else{
-				System.out.println("Invalid word. Try again.");
+				System.out.println("No such word in the dictionary. Try again.");
+				
 			}
 			
+		}else{
+			System.out.println("Invalid word. Try again.");
 		}
+
 		if (hand.length() == 0) {
 	        System.out.println("Ran out of letters. Total score: " + score + " points");
 		} else {
 			System.out.println("End of hand. Total score: " + score + " points");
 		}
 	}
+}
 
 	// Plays a Scrabble game. Prompts the user to enter 'n' for playing a new hand, or 'e'
 	// to end the game. If the user enters any other input, writes an error message.
@@ -164,7 +164,7 @@ public class Scrabble {
 				
 			}
 			System.out.println("error in your input");
-			continue;
+			
 		
 			//// that completes the game playing loop
 			//break;
