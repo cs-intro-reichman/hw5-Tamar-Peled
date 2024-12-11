@@ -133,12 +133,12 @@ public class Scrabble {
 		}else{
 			System.out.println("Invalid word. Try again.");
 		}
-
-		if (hand.length() == 0) {
-	        System.out.println("Ran out of letters. Total score: " + score + " points");
-		} else {
-			System.out.println("End of hand. Total score: " + score + " points");
-		}
+	
+	}
+	if (hand.length() == 0) {
+		System.out.println("Ran out of letters. Total score: " + score + " points");
+	} else {
+		System.out.println("End of hand. Total score: " + score + " points");
 	}
 }
 

@@ -113,9 +113,9 @@ public class MyString {
         //String removeFromStr2 = "";
         
 
-        //for (int i = 0; i < str2.length(); i ++){
+        //for (int i = 0; i < str1.length(); i ++){
             //boolean isDeleted = false;
-            //for (int j = 0; j < str1.length(); j++){
+            //for (int j = 0; j < str2.length(); j++){
                 //if (str1.charAt(j) != str2.charAt(i) || isDeleted ) {
                     //removeFromStr2 += str1.charAt(j);
                     
@@ -125,6 +125,7 @@ public class MyString {
                 //}
                 
             //}
+            //str2=removeftromstr2
         //}
         String removeFromStr2 = "";
         String tempStr2 = str2;
