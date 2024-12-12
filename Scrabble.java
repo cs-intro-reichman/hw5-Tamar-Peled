@@ -2,8 +2,6 @@
  * RUNI version of the Scrabble game.
  */
 
-import java.util.Scanner;
-
 public class Scrabble {
 
 	// Note 1: "Class variables", like the five class-level variables declared below,
@@ -40,7 +38,7 @@ public class Scrabble {
 		In in = new In(WORDS_FILE);
         System.out.println("Loading word list from file...");
         NUM_OF_WORDS = 0;
-		while (!in.isEmpty()) {
+		while (!in.isEmpty()){
 			// Reads the next "token" from the file. A token is defined as a string of 
 			// non-whitespace characters. Whitespace is either space characters, or  
 			// end-of-line characters.
@@ -52,7 +50,7 @@ public class Scrabble {
 	// Checks if the given word is in the dictionary.
 	public static boolean isWordInDictionary(String word) {
 		for (int i = 0; i < DICTIONARY.length; i++){
-			if (word.equals(DICTIONARY[i])) {
+			if (word.equals(DICTIONARY[i])){
 				return true;
 			}
 		}
@@ -114,7 +112,7 @@ public class Scrabble {
 			// end-of-line characters.
 			String input = in.readString();
 			
-			if (input.equals(".")) {
+			if (input.equals(".")){
 				break;	
 
 			}if (MyString.subsetOf(input, hand)){
@@ -125,7 +123,7 @@ public class Scrabble {
 					System.out.println(input + " earned " + wordScore + " points. Score: " + score + " points\n");
 
 				
-					}else{
+				}else{
 					System.out.println("No such word in the dictionary. Try again.");
 				
 			}
@@ -167,7 +165,7 @@ public class Scrabble {
 			
 		
 			//// that completes the game playing loop
-			//break;
+		
 		}
 	}
 
