@@ -10,7 +10,7 @@ public class MyString {
         System.out.println(countChar(hello, 'z'));
         System.out.println(spacedString(hello));
         
-        //// Put your other tests here.
+        
        
     }
 
@@ -113,21 +113,21 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-        String removeFromStr2 = "";
+        String resultOfStr1 = "";
         String tempStr2 = str2;
         // Iterate through str1 and remove matching characters from str2
         for(int i = 0; i < str1.length(); i++){ 
          int indexToRemove = tempStr2.indexOf(str1.charAt(i));
-            if (indexToRemove != -1) { 
+            if (indexToRemove != -1){ 
             // Remove character from tempStr2 
             tempStr2 = tempStr2.substring(0, indexToRemove) + tempStr2.substring(indexToRemove + 1);
                 }else{
                 // Add character to the result if not found in tempStr2
-                removeFromStr2 += str1.charAt(i);
+                resultOfStr1 += str1.charAt(i);
          
         }
     }
-        return removeFromStr2;
+        return resultOfStr1;
     
 
     }
