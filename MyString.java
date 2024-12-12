@@ -24,7 +24,7 @@ public class MyString {
      */
     public static int countChar(String str, char ch) {
         int count = 0;
-
+        // Loop through the string and count occurrences of the character
         for(int i = 0; i < str.length(); i++){
             if (str.charAt(i) == ch) {
                 count++;   
@@ -46,12 +46,12 @@ public class MyString {
      * @return true is str1 is a subset of str2, false otherwise
      */
     public static boolean subsetOf(String str1, String str2) {
+        // If str1 is longer than str2, it cannot be a subset
          if (str1.length() > str2.length()){
             return false;
          }
-
+        // Check character frequencies in both strings
          for ( int i = 0; i < str1.length(); i++){
-            
             if (countChar(str1, str1.charAt(i)) > countChar(str2, str1.charAt(i))){
                 return false;        
             }
@@ -71,9 +71,11 @@ public class MyString {
      */
     public static String spacedString(String str) {
         String spacedString = "";
+        // Add each character followed by a space, except for the last character
         for (int i = 0; i < (str.length() -1); i++){
             spacedString += (str.charAt(i) + " ");
         }
+        // Add each character followed by a space, except for the last character
         if (str.length() != 0) {
             spacedString += str.charAt(str.length()-1);  
         }
@@ -93,6 +95,7 @@ public class MyString {
      */
     public static String randomStringOfLetters(int n) {
         String randomStringOfLetters = "";
+        // Generate n random characters
         for (int i = 0; i < n; i++){
             randomStringOfLetters += (char)((int)(Math.random() * 26) + 'a');
         }
@@ -110,32 +113,17 @@ public class MyString {
      * @return a string consisting of str1 minus all the characters of str2
      */
     public static String remove(String str1, String str2) {
-        //String removeFromStr2 = "";
-        
-
-        //for (int i = 0; i < str1.length(); i ++){
-            //boolean isDeleted = false;
-            //for (int j = 0; j < str2.length(); j++){
-                //if (str1.charAt(j) != str2.charAt(i) || isDeleted ) {
-                    //removeFromStr2 += str1.charAt(j);
-                    
-                    
-                //}else{
-                    //isDeleted =true;
-                //}
-                
-            //}
-            //str2=removeftromstr2
-        //}
         String removeFromStr2 = "";
         String tempStr2 = str2;
-        for(int i = 0; i < str1.length(); i++){
-            
+        // Iterate through str1 and remove matching characters from str2
+        for(int i = 0; i < str1.length(); i++){ 
          int indexToRemove = tempStr2.indexOf(str1.charAt(i));
-         if (indexToRemove != -1) {  
-         tempStr2 = tempStr2.substring(0, indexToRemove) + tempStr2.substring(indexToRemove + 1);
-        }else{
-            removeFromStr2 += str1.charAt(i);
+            if (indexToRemove != -1) { 
+            // Remove character from tempStr2 
+            tempStr2 = tempStr2.substring(0, indexToRemove) + tempStr2.substring(indexToRemove + 1);
+                }else{
+                // Add character to the result if not found in tempStr2
+                removeFromStr2 += str1.charAt(i);
          
         }
     }
